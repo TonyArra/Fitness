@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Food;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -18,7 +19,7 @@ class FoodTest extends TestCase
             'fat' => 2,
             'carbs' => 15
         );
-
+        
         Food::create($data);
 
         $this->assertDatabaseHas('foods', $data);

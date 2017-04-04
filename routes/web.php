@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/nutrition/diary/add', function () {
+Route::post('/nutrition/diary/', function () {
     return 'Hello World';
 })->name('add-food');
