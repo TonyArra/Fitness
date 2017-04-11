@@ -2,5 +2,6 @@ body {
   padding-top: 50px;
 }
 
-#food-diary-table {
+#add-food-form {
+  width:500px;
 }

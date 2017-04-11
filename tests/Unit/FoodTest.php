@@ -4,11 +4,11 @@ namespace Tests\Unit;
 
 use App\Food;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class FoodTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     public function testCanCreateFood()
     {

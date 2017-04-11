@@ -1,5 +1,8 @@
 <?php
 
+use App\Food;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +15,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('welcome')
+        ->with('foods', Food::all());
+})->name('home');
 
-Route::post('/nutrition/diary/', function () {
-    return 'Hello World';
-})->name('add-food');
+Route::group(['prefix' => '/nutrition/diary'], function() {
+    Route::post('/', function (Request $request) {
+        Food::create($request->all());
+
+        return back();
+    })->name('add-food');
+
+    Route::get('/', function () {
+        $foods = Food::all();
+
+        return response()->json(array(
+            'count' => $foods->count(),
+            'records' => $foods,
+        ));
+    })->name('read-food');
+});

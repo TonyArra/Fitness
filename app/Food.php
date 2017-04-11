@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Food extends Model
+class Food extends \Eloquent
 {
     protected $fillable = ['name', 'calories', 'protein', 'fat', 'carbs'];
 }

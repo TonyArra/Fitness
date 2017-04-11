@@ -19,8 +19,6 @@
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
-
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -51,38 +49,54 @@
 
 <div class="container">
   <div class="row">
-    <form method="POST" action="{{ route('add-food') }}">
+    <form id="add-food-form" method="POST" action="{{ route('add-food') }}">
       <h2>Add Food</h2>
       {{ csrf_field() }}
       <div class="form-group">
-        <input class="form-control" name="name" title="Name" placeholder="Food/Product Name">
+        <input class="form-control" name="name" title="Name" placeholder="Food/Product Name" required>
       </div>
-      <div class="form-group">
-        <input class="form-control" name="calories" title="Calories" placeholder="Calories">
-      </div>
-      <div class="form-group">
-        <input class="form-control" name="protein" title="Protein" placeholder="Protein">
-      </div>
-      <div class="form-group">
-        <input class="form-control" name="carbs" title="Carbs" placeholder="Carbs">
-      </div>
-      <div class="form-group">
-        <input class="form-control" name="fat" title="Fat" placeholder="Fat">
-      </div>
+      <fieldset>
+        <legend>Nutrients per serving</legend>
+        <div class="form-group">
+          <input type="number" class="form-control" name="calories" title="Calories" placeholder="Calories" required
+                 min="0">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" name="protein" title="Protein" placeholder="Protein" required
+                 min="0">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" name="carbs" title="Carbs" placeholder="Carbs" required min="0">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" name="fat" title="Fat" placeholder="Fat" required min="0">
+        </div>
+      </fieldset>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
   </div>
+
   <div class="row">
     <h2>Food Diary</h2>
     <table class="table table-striped" id="food-diary-table">
       <thead>
       <tr>
-        <th>Name</th>
-        <th>Calories</th>
-        <th>Protein</th>
-        <th>Carbohydrates</th>
-        <th>Fat</th>
+        <th>Name
+        <th>Calories
+        <th>Protein
+        <th>Carbohydrates
+        <th>Fat
       </tr>
+      @php /** @var \App\Food $food **/ @endphp
+      @foreach($foods as $food)
+        <tr>
+          <th>{{ $food->name }}
+          <th>{{ $food->calories }}
+          <th>{{ $food->protein }}
+          <th>{{ $food->fat }}
+          <th>{{ $food->carbs }}
+        </tr>
+      @endforeach
       </thead>
       <tbody>
       </tbody>
